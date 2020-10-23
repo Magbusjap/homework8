@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,7 @@
             this.imAbout});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(521, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(704, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -70,22 +71,22 @@
             this.miExit});
             this.miFile.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.miFile.Name = "miFile";
-            this.miFile.Size = new System.Drawing.Size(48, 20);
-            this.miFile.Text = "Файл";
+            this.miFile.Size = new System.Drawing.Size(53, 20);
+            this.miFile.Text = "Меню";
             // 
             // miNew
             // 
             this.miNew.Name = "miNew";
             this.miNew.Size = new System.Drawing.Size(180, 22);
             this.miNew.Text = "Новый";
-            this.miNew.Click += new System.EventHandler(this.miNew_Click);
+            this.miNew.Click += new System.EventHandler(this.New_Click);
             // 
             // miOpen
             // 
             this.miOpen.Name = "miOpen";
             this.miOpen.Size = new System.Drawing.Size(180, 22);
             this.miOpen.Text = "Открыть";
-            this.miOpen.Click += new System.EventHandler(this.miOpen_Click);
+            this.miOpen.Click += new System.EventHandler(this.OpenClick);
             // 
             // miSave
             // 
@@ -99,7 +100,7 @@
             this.imSaveAs.Name = "imSaveAs";
             this.imSaveAs.Size = new System.Drawing.Size(180, 22);
             this.imSaveAs.Text = "Сохранить как...";
-            this.imSaveAs.Click += new System.EventHandler(this.imSaveAs_Click);
+            this.imSaveAs.Click += new System.EventHandler(this.SaveAs_Click);
             // 
             // miExit
             // 
@@ -113,16 +114,16 @@
             this.imAbout.Name = "imAbout";
             this.imAbout.Size = new System.Drawing.Size(94, 20);
             this.imAbout.Text = "О программе";
-            this.imAbout.Click += new System.EventHandler(this.imAbout_Click);
+            this.imAbout.Click += new System.EventHandler(this.About_Click);
             // 
             // tboxQuestion
             // 
             this.tboxQuestion.BackColor = System.Drawing.Color.PaleGreen;
             this.tboxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tboxQuestion.Location = new System.Drawing.Point(0, 22);
+            this.tboxQuestion.Location = new System.Drawing.Point(0, 23);
             this.tboxQuestion.Multiline = true;
             this.tboxQuestion.Name = "tboxQuestion";
-            this.tboxQuestion.Size = new System.Drawing.Size(523, 234);
+            this.tboxQuestion.Size = new System.Drawing.Size(704, 286);
             this.tboxQuestion.TabIndex = 1;
             this.tboxQuestion.TextChanged += new System.EventHandler(this.tboxQuestion_TextChanged);
             // 
@@ -130,7 +131,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.Color.PaleGreen;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 269);
+            this.btnAdd.Location = new System.Drawing.Point(23, 331);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 2;
@@ -142,7 +143,7 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.PaleGreen;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDelete.Location = new System.Drawing.Point(119, 269);
+            this.btnDelete.Location = new System.Drawing.Point(142, 331);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 3;
@@ -154,40 +155,44 @@
             // 
             this.btnSaveQuest.BackColor = System.Drawing.Color.PaleGreen;
             this.btnSaveQuest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnSaveQuest.Location = new System.Drawing.Point(232, 269);
+            this.btnSaveQuest.Location = new System.Drawing.Point(260, 331);
             this.btnSaveQuest.Name = "btnSaveQuest";
             this.btnSaveQuest.Size = new System.Drawing.Size(80, 23);
             this.btnSaveQuest.TabIndex = 4;
-            this.btnSaveQuest.Text = "Сохранить";
+            this.btnSaveQuest.Text = "Обновить ";
             this.btnSaveQuest.UseVisualStyleBackColor = false;
-            this.btnSaveQuest.Click += new System.EventHandler(this.btnSaveQuest_Click);
+            this.btnSaveQuest.Click += new System.EventHandler(this.SaveQuestClick);
             // 
             // nudNumber
             // 
             this.nudNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudNumber.Location = new System.Drawing.Point(364, 271);
+            this.nudNumber.Location = new System.Drawing.Point(536, 334);
             this.nudNumber.Name = "nudNumber";
             this.nudNumber.Size = new System.Drawing.Size(60, 21);
             this.nudNumber.TabIndex = 5;
-            this.nudNumber.ValueChanged += new System.EventHandler(this.nudNumber_ValueChanged);
+            this.nudNumber.ValueChanged += new System.EventHandler(this.NumberValueChanged);
             // 
             // cboxTrue
             // 
             this.cboxTrue.AutoSize = true;
             this.cboxTrue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cboxTrue.Location = new System.Drawing.Point(440, 272);
+            this.cboxTrue.Location = new System.Drawing.Point(622, 335);
             this.cboxTrue.Name = "cboxTrue";
             this.cboxTrue.Size = new System.Drawing.Size(70, 19);
             this.cboxTrue.TabIndex = 6;
             this.cboxTrue.Text = "Правда";
             this.cboxTrue.UseVisualStyleBackColor = true;
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
-            this.ClientSize = new System.Drawing.Size(521, 304);
+            this.ClientSize = new System.Drawing.Size(704, 372);
             this.Controls.Add(this.cboxTrue);
             this.Controls.Add(this.nudNumber);
             this.Controls.Add(this.btnSaveQuest);
@@ -195,10 +200,11 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.tboxQuestion);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Верю - Не верю";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Блокнот - Вопросник";
+            this.Load += new System.EventHandler(this.form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumber)).EndInit();

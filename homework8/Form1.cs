@@ -13,44 +13,44 @@ namespace homework8
     //Михаил Анкудинов 1. homework8 
 
     //а) Создать приложение, показанное на уроке, добавив в него защиту от возможных ошибок
-        //(не создана база данных, обращение к несуществующему вопросу, открытие слишком большого файла и т.д.).
+    //(не создана база данных, обращение к несуществующему вопросу, открытие слишком большого файла и т.д.).
     //б) Изменить интерфейс программы, увеличив шрифт, поменяв цвет элементов и добавив другие 
-        //«косметические» улучшения на свое усмотрение.
+    //«косметические» улучшения на свое усмотрение.
     //в) Добавить в приложение меню «О программе» с информацией о программе(автор, версия, авторские права и др.).
     //г) 
     //д) Добавить пункт меню Save As, в котором можно выбрать имя для сохранения базы данных(элемент SaveFileDialog).
 
-
-
     public partial class Form1 : Form
     {
-        // База данных с вопросами
+        //База данных с вопросами
         TrueFalse database;
         public Form1()
         {
             InitializeComponent();
         }
-        // Обработчик пункта меню Exit
+
+        //Кнопка Выход
         private void miExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        // Обработчик пункта меню New
-        private void miNew_Click(object sender, EventArgs e)
+
+        //Метод, отвечающий за ввод данных пользователя
+        private void New_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 database = new TrueFalse(sfd.FileName);
-                database.Add("123", true);
+                database.Add("Вопрос: ", true);
                 database.Save();
                 nudNumber.Minimum = 1;
                 nudNumber.Maximum = 1;
                 nudNumber.Value = 1;
             };
         }
-        // Обработчик события изменения значения numericUpDown
-        private void nudNumber_ValueChanged(object sender, EventArgs e)
+        //Обработка события изменений значения numericUpDown
+        private void NumberValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -59,10 +59,11 @@ namespace homework8
             }
             catch (NullReferenceException ex)
             {
-                MessageBox.Show($"Подробности: {ex.Message}", "Данный вопрос отсутствует");
+                MessageBox.Show($"Подробности: {ex.Message}", "Данный запрос отсутствует");
             }
         }
-        // Обработчик кнопки Добавить
+
+        //Кнопка Добавить
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (database == null)
@@ -74,7 +75,8 @@ namespace homework8
             nudNumber.Maximum = database.Count;
             nudNumber.Value = database.Count;
         }
-        // Обработчик кнопки Удалить
+
+        //Кнопка Удалить
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (nudNumber.Maximum == 1 || database == null) return;
@@ -82,14 +84,16 @@ namespace homework8
             nudNumber.Maximum--;
             if (nudNumber.Value > 1) nudNumber.Value = nudNumber.Value;
         }
-        // Обработчик пункта меню Save
+
+        // Кнопка Сохранить
         private void miSave_Click(object sender, EventArgs e)
         {
             if (database != null) database.Save();
-            else MessageBox.Show("База данных не создана");
+            else MessageBox.Show("Файл не найден!");
         }
-        // Обработчик пункта меню Open
-        private void miOpen_Click(object sender, EventArgs e)
+
+        //Кнопка Открыть
+        private void OpenClick(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -101,13 +105,12 @@ namespace homework8
                 nudNumber.Value = 1;
             }
         }
-        // Обработчик кнопки Сохранить (вопрос)
-        private void btnSaveQuest_Click(object sender, EventArgs e)
+
+        //Кнопка Обновить
+        private void SaveQuestClick(object sender, EventArgs e)
         {
-            
             try
             {
-
                 database[(int)nudNumber.Value - 1].Text = tboxQuestion.Text;
 
                 database[(int)nudNumber.Value - 1].TrueFalse = cboxTrue.Checked;
@@ -116,38 +119,42 @@ namespace homework8
             {
                 MessageBox.Show($"Подробности: {ex.Message}", "Откройте или создайте файл с вопросами");
             }
-
-
         }
 
-        private void imAbout_Click(object sender, EventArgs e)
+        //О программе
+        private void About_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Автор: GeekBrains\nРедактор: Сергей Ткачёв\nВсе права защищены\nВерсия 1.01а", "О программе");
+            MessageBox.Show("Автор программы:\nМихаил Анкудинов\n© Copyright \n Версия 1.0.00", "О программе");
         }
 
-        private void imSaveAs_Click(object sender, EventArgs e)
+
+        //Метод, отвечающий за сохрание файла
+        private void SaveAs_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
-            // сохраняем текст в файл
+            
+
             if(database == null)
             {
                 database = new TrueFalse(saveFileDialog1.FileName);
-                database.Add("123", true);
+                database.Add("Вопрос: ", true);
                 database.Save();
                 nudNumber.Minimum = 1;
                 nudNumber.Maximum = 1;
                 nudNumber.Value = 1;
-                MessageBox.Show("Файл сохранен");
+                MessageBox.Show("Сохранено");
             }
             else
             {
                 database.FileName = saveFileDialog1.FileName;
                 database.Save();
-                MessageBox.Show("Файл сохранен");
+                MessageBox.Show("Сохранено");
             }
         }
 
+
+        #region xml и данные в привате
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -163,9 +170,10 @@ namespace homework8
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void form1_Load(object sender, EventArgs e)
         {
 
         }
+        #endregion
     }
 }
