@@ -8,47 +8,41 @@ using System.Xml.Serialization;
 
 namespace homework8
 {
+    //Добавлен класс Serialization для XML файлов
+
     class TrueFalse
     {
         string fileName;
         List<Question> list;
-        public string FileName
-        {
-            set { fileName = value; }
-        }
+        public string FileName { set { fileName = value; } }
 
-        /// <summary>Конструктор записывает путь к файлу и инициализирует пустой список вопросов</summary>
-        /// <param name="fileName">Имя и путь к файлу</param>
+        //Конструктор, отвечающий за инициализацию Имени и путь к файлам
         public TrueFalse(string fileName)
         {
             this.fileName = fileName;
-            list = new List<Question>();
+            list = new List<Question>(); //Список вопросов
         }
 
-        /// <summary>Метод добавления вопроса</summary>
-        /// <param name="text">Текст вопроса</param>
-        /// <param name="trueFalse">Ответ на вопрос</param>
+        //Метод, отвечающий за добавление вопросов
         public void Add(string text, bool trueFalse)
         {
             list.Add(new Question(text, trueFalse));
         }
 
-        /// <summary>Метод удаления вопроса</summary>
-        /// <param name="index">Индекс вопроса в списке</param>
+
+        //Удалить вопрос
         public void Remove(int index)
         {
             if (list != null && index < list.Count && index >= 0) list.RemoveAt(index);
         }
 
-        /// <summary>Индексатор - свойство для доступа к закрытому объекту</summary>
-        /// <param name="index">Индекс вопроса</param>
-        /// <returns></returns>
+
         public Question this[int index]
         {
             get { return list[index]; }
         }
 
-        /// <summary>Метод сериализации списка вопросов</summary>
+        //Метод сериализации списка вопросов
         public void Save()
         {
             XmlSerializer xmlFormat = new XmlSerializer(typeof(List<Question>));
@@ -57,7 +51,7 @@ namespace homework8
             fStream.Close();
         }
 
-        /// <summary>Метод десериализации списка вопросов</summary>
+        //Десериализует список вопросов
         public void Load()
         {
             XmlSerializer xmlFormat = new XmlSerializer(typeof(List<Question>));
@@ -65,10 +59,12 @@ namespace homework8
             list = (List<Question>)xmlFormat.Deserialize(fStream);
             fStream.Close();
         }
-        /// <summary>Свойство возвращает размер списка вопросов</summary>
+
+        //Свойство возвращает размер списка вопросов
         public int Count
         {
             get { return list.Count; }
         }
     }
+
 }

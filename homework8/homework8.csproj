@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61865FB0-AC80-467B-AEA7-A7048C4DEC7C}</ProjectGuid>
+    <ProjectGuid>{DDC9F6DA-73A3-4920-9B3C-DBAB717319AD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>homework8</RootNamespace>
-    <AssemblyName>homework8</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>BelieveOrNotBelieve</RootNamespace>
+    <AssemblyName>BelieveOrNotBelieve</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
